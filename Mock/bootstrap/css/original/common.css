@@ -1,0 +1,34 @@
+hr {
+  border-width: 3px 0 0 0; /* 太さ */
+  border-style: solid; /* 種類 */
+  border-color: silver; /* 色 */
+}
+
+p {
+    width: 250px;
+}
+.right {
+    margin-left: auto;
+}
+
+/* 隣接する線を重ねて表示 */
+.table-css {
+    border-collapse: collapse;
+}
+
+/* 上部と左側の線のみ非表示。下部と右側は残っている */
+.td-css11 {
+    border: 1px solid black;
+    border-top-style:none;
+    border-left-style:none;
+}
+
+/* 上下左右すべての線を非表示 */
+.td-css13 {
+    border-style:none;
+}
+
+/* すべての線を表示 */
+.td-css {
+    border: 1px solid black;
+}
