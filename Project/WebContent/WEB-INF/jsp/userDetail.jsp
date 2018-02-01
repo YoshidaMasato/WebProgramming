@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <html lang="ja">
   <head>
@@ -6,19 +8,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="../css/bootstrap.min.css" >
-    <link rel="stylesheet" href="../css/original/common.css" >
+    <link rel="stylesheet" href="./css/bootstrap.min.css" >
+    <link rel="stylesheet" href="./css/original/common.css" >
 
 
-    <title>Hello, world!</title>
+    <title>ユーザ情報詳細参照</title>
   </head>
 
   <body>
 
 	<!-- ナビバー -->
   	<nav class="navbar navbar-dark bg-primary">
-  		<p class="right"><font size="5" color="white">ユーザ名 さん</font></p>
-  		<a href="../index.html">
+  		<p class="right"><font size="5" color="white">${userInfo.name} さん</font></p>
+  		<a href="Logout">
 	  		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 	  			ログアウト
 	  		</button>
@@ -35,23 +37,23 @@
 			<table class="table-css" style="WIDTH: 50%">
 				<tr>
 					<td class="td-css13"><b>ログインID</b></td>
-					<td class="td-css13"><p>id0001</p></td>
+					<td class="td-css13"><p>${user.login_id}</p></td>
 				</tr>
 				<tr>
 					<td class="td-css13"><b>ユーザ名</b></td>
-					<td class="td-css13"><p>田中太郎</p></td>
+					<td class="td-css13"><p>${user.name}</p></td>
 				</tr>
 				<tr>
 					<td class="td-css13"><b>生年月日</b></td>
-					<td class="td-css13"><p>1989年04月26日</p></td>
+					<td class="td-css13"><p>${user.birth_date}</p></td>
 				</tr>
 				<tr>
 					<td class="td-css13"><b>登録日時</b></td>
-					<td class="td-css13"><p>2017年01月01日 10:50</p></td>
+					<td class="td-css13"><p>${user.create_date}</p></td>
 				</tr>
 				<tr>
 					<td class="td-css13"><b>更新日時</b></td>
-					<td class="td-css13">2017年02月01日 01:05
+					<td class="td-css13"><p>${user.update_date}</p></td>
 				</tr>
 			</table>
 			<br>
