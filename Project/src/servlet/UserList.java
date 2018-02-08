@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import beans.User;
 import dao.UserDao;
@@ -32,6 +33,12 @@ public class UserList extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		if(session.getAttribute("userInfo") == null) {
+			response.sendRedirect("Login");
+			return;
+		}
+
 		UserDao userDao = new UserDao();
 		List<User> users = userDao.findAll();
 		request.setAttribute("users", users);
@@ -44,8 +51,21 @@ public class UserList extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		request.setCharacterEncoding("UTF-8");
+		String login_id = request.getParameter("loginId");
+		String name = request.getParameter("userName");
+		String birth_date1 = request.getParameter("birthDate1");
+		String birth_date2 = request.getParameter("birthDate2");
+
+		System.out.println(login_id);
+		System.out.println(name);
+		System.out.println(birth_date1);
+		System.out.println(birth_date2);
+
+		UserDao userDao = new UserDao();
+		List<User> users = userDao.retrieveUsers(login_id, name, birth_date);
+
+
 	}
 
 }

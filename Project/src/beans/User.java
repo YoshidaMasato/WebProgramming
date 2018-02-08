@@ -30,6 +30,12 @@ public class User {
 		this.update_date = update_date;
 	}
 
+	public User(String login_id, String name, String birth_date) {
+		this.login_id = login_id;
+		this.name = name;
+		this.birth_date = birth_date;
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -51,6 +57,9 @@ public class User {
 	public String getBirth_date() {
 		return birth_date;
 	}
+//	public String getBirth_date_rwerwrw() {
+//		return birth_date;
+//	}
 	public void setBirth_date(String birth_date) {
 		this.birth_date = birth_date;
 	}

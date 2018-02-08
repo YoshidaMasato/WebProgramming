@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%
 
-%>
 
 <!DOCTYPE html>
 <html lang="ja">
@@ -38,41 +36,41 @@
 
 			<p><b><font size="6">ユーザ新規登録</font></b></p>
 
-			<form action="create" method="post">
+			<form action="NewUser" method="post">
 				<table class="table-css" style="WIDTH: 50%">
 
 					<tr>
 						<td class="td-css13"><b>ログインID</b><span class="hissu">必須&emsp;</span></td>
-						<td class="td-css13"><p><input type="text" name="newUsLoginId" style="WIDTH: 150px"/></p></td>
+						<td class="td-css13"><p><input type="text" name="newUsLoginId" value="${form.login_id}" style="WIDTH: 150px"/></p></td>
 					</tr>
 					<tr>
 						<td class="td-css13"><b>パスワード</b><span class="hissu">必須&emsp;</span></td>
 						<td class="td-css13">
 							<p id="pass1-error" class="alert-error"></p>
 	            			<p id="pass1-error2" class="alert-error"></p>
-							<p><input type="text" name="newUsPassword" class="span2" maxlength="12" style="WIDTH: 150px"></p>
+							<p><input type="password" name="newUsPassword" class="span2" maxlength="12" style="WIDTH: 150px"></p>
 						</td>
 					</tr>
 					<tr>
 						<td class="td-css13"><b>パスワード(確認)</b><span class="hissu">必須&emsp;</span></td>
 						<td class="td-css13">
 							<p id="pass2-error" class="alert-error"></p>
-							<p><input type="text" name="newUsPasswordCheck" class="span2" maxlength="12" style="WIDTH: 150px"></p>
+							<p><input type="password" name="newUsPasswordCheck" class="span2" maxlength="12" style="WIDTH: 150px"></p>
 						</td>
 					</tr>
 					<tr>
 						<td class="td-css13"><b>ユーザ名</b><span class="hissu">必須&emsp;</span></td>
-						<td class="td-css13"><p><input type="text" name="newUsName" style="WIDTH: 150px"/></p></td>
+						<td class="td-css13"><p><input type="text" name="newUsName" value="${form.name}" style="WIDTH: 150px"/></p></td>
 					</tr>
 					<tr>
 						<td class="td-css13"><b>生年月日</b><span class="hissu">必須&emsp;</span></td>
-						<td class="td-css13"><input type="date" name="newUsBirthDate" value="" style="WIDTH: 150px">
+						<td class="td-css13"><input type="date" name="newUsBirthDate" value="${form.birth_date}" style="WIDTH: 150px">
 					</tr>
 				</table>
-			</form>
+			<font color=red>${errMsg}</font>
 			<br>
 			<p><input type="submit" value="登録" class="btn btn-primary btn-sm" style="WIDTH: 70px"></p>
-
+			</form>
 
 
 		</div>

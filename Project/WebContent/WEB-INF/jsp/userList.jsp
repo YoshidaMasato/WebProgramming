@@ -33,24 +33,26 @@
 
 
 			<p><b><font size="6">ユーザ一覧</font></b></p>
-			<a href="NewUser?id=${user.id}"><div align="right">新規登録</div></a>
+			<a href="NewUser?id=${userInfo.id}"><div align="right">新規登録</div></a>
 
-			<table class="table-css" width="50%">
-				<tr>
-					<td class="td-css13"><b>ログインID</b></td>
-					<td class="td-css13"><p><input type="text" id="氏名" /></p></td>
-				</tr>
-				<tr>
-					<td class="td-css13"><b>ユーザ名</b></td>
-					<td class="td-css13"><p><input type="text" user="氏名" /></p></td>
-				</tr>
-				<tr>
-					<td class="td-css13"><b>生年月日</b></td>
-					<td class="td-css13"><input type="date" name="example" value="">　～　<input type="date" name="example" value="">
-				</tr>
-			</table>
-			<br>
-			<p><button type="button" class="btn btn-light">検索</button></p>
+			<form action="UserList" method="post">
+				<table class="table-css" width="50%">
+					<tr>
+						<td class="td-css13"><b>ログインID</b></td>
+						<td class="td-css13"><p><input type="text" name="loginId" /></p></td>
+					</tr>
+					<tr>
+						<td class="td-css13"><b>ユーザ名</b></td>
+						<td class="td-css13"><p><input type="text" name="userName" /></p></td>
+					</tr>
+					<tr>
+						<td class="td-css13"><b>生年月日</b></td>
+						<td class="td-css13"><input type="date" name="birthDate1" value="">&emsp;～&emsp;<input type="date" name="birthDate2" value="">
+					</tr>
+				</table>
+				<br>
+				<p><input type="submit" value="検索" class="btn btn-light"></p>
+			</form>
 
 			<!-- 水平線 -->
 			<hr width="95%">

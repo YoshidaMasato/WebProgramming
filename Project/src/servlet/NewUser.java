@@ -32,6 +32,11 @@ public class NewUser extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		if(session.getAttribute("userInfo") == null) {
+			response.sendRedirect("Login");
+			return;
+		}
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/newUser.jsp");
 		dispatcher.forward(request, response);
 	}
@@ -40,6 +45,7 @@ public class NewUser extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		String loginId = request.getParameter("newUsLoginId");
 		String password = request.getParameter("newUsPassword");
 		String passwordCheck = request.getParameter("newUsPasswordCheck");
@@ -53,20 +59,15 @@ public class NewUser extends HttpServlet {
 		System.out.println(birthDate);
 
 		UserDao userDao = new UserDao();
+		boolean create = userDao.createUser(loginId,password,passwordCheck,name,birthDate);
 
-
-
-
-
-		User user = userDao.findByLoginId(loginId,password);
-
-		if(user == null) {
-			request.setAttribute("errMsg", "ログインできませんでした。");
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/index.jsp");
+		if(!create) {
+			request.setAttribute("errMsg", "登録に失敗しました。");
+			User form = new User(loginId, name, birthDate);
+			request.setAttribute("form", form);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/newUser.jsp");
 			dispatcher.forward(request, response);
 		}else {
-			HttpSession session = request.getSession();
-			session.setAttribute("userInfo", user);
 			response.sendRedirect("UserList");
 
 		}
