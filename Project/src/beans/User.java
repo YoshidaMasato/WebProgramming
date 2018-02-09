@@ -1,5 +1,9 @@
 package beans;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class User {
 	private int id;
 	private String login_id;
@@ -57,9 +61,19 @@ public class User {
 	public String getBirth_date() {
 		return birth_date;
 	}
-//	public String getBirth_date_rwerwrw() {
-//		return birth_date;
-//	}
+	//yyyy年MM月dd日でフォーマットした生年月日のgetter
+	public String getBirth_date_format() {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Date formatBirthDate;
+		try {
+			formatBirthDate = sdf.parse(birth_date);
+			String str = new SimpleDateFormat("yyyy年MM月dd日").format(formatBirthDate);
+			return str;
+		} catch (ParseException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 	public void setBirth_date(String birth_date) {
 		this.birth_date = birth_date;
 	}

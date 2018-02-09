@@ -21,7 +21,7 @@
 
 	<!-- ナビバー -->
   	<nav class="navbar navbar-dark bg-primary">
-  		<p class="right"><font size="5" color="white">${userInfo.name} さん</font></p>
+  		<p class="right"><font size="5" color="white"><c:out value="${userInfo.name}"/> さん</font></p>
   		<a href="Logout">
 	  		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 	  			ログアウト

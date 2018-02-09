@@ -19,7 +19,7 @@
 
 	<!-- ナビバー -->
   	<nav class="navbar navbar-dark bg-primary">
-  		<p class="right"><font size="5" color="white">${userInfo.name} さん</font></p>
+  		<p class="right"><font size="5" color="white"><c:out value="${userInfo.name}"/> さん</font></p>
   		<a href="Logout">
 	  		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 	  			ログアウト
@@ -72,14 +72,32 @@
 
 					<c:forEach var="user" items="${users}">
 						<tr>
-							<th scope="row">${user.id}</th>
-							<td colspan="1">${user.login_id}</td>
-							<td>${user.name}</td>
-							<td>${user.birth_date}</td>
+							<th scope="row"><c:out value="${user.id}"/></th>
+							<td colspan="1"><c:out value="${user.login_id}"/></td>
+							<td><c:out value="${user.name}"/></td>
+							<td><c:out value="${user.birth_date}"/></td>
 							<td>
+								<%-- すべてのユーザに詳細ボタンを表示 --%>
 								<a href="UserDetail?id=${user.id}"><button type="button" class="btn btn-primary">詳細</button></a>
-								<a href="UserUpdate?id=${user.id}"><button type="button" class="btn btn-success">更新</button></a>
-								<a href="UserDelete?id=${user.id}"><button type="button" class="btn btn-danger">削除</button></a>
+
+								<%-- 条件付きで更新ボタン表示 --%>
+								<c:choose>
+
+									<%-- ログインユーザ自身の更新ボタン表示 --%>
+									<c:when test="${userInfo.id == user.id}">
+										<a href="UserUpdate?id=${user.id}"><button type="button" class="btn btn-success">更新</button></a>
+									</c:when>
+
+									<%-- 管理者に表示 --%>
+									<c:when test="${userInfo.login_id == 'admin'}">
+										<a href="UserUpdate?id=${user.id}"><button type="button" class="btn btn-success">更新</button></a>
+									</c:when>
+								</c:choose>
+
+								<%-- 管理者のみに削除ボタンを表示 --%>
+								<c:if test="${userInfo.login_id == 'admin'}">
+									<a href="UserDelete?id=${user.id}"><button type="button" class="btn btn-danger">削除</button></a>
+								</c:if>
 							</td>
 						</tr>
 					</c:forEach>

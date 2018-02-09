@@ -19,9 +19,9 @@
 		<form action="Login" method="post">
 		  	<p><b><font size="6">ログイン画面</font></b></p>
 		  	<p><font color=red>${errMsg}</font></p>
-		  	<p><font color=red>${TimeOut}</font></p>
+		  	<p><font color=green>${LogoutMsgt}</font></p>
 			<p>ログインID&emsp;&emsp;<input type="text" name="loginId" /></p>
-			<p>パスワード&emsp;&emsp;<input type="text" name="password"/></p>
+			<p>パスワード&emsp;&emsp;<input type="password" name="password"/></p>
 			<input type="submit" value="ログイン" class="btn btn-primary btn-sm">
 		</form>
 	</div>

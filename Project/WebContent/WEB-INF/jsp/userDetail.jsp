@@ -19,7 +19,7 @@
 
 	<!-- ナビバー -->
   	<nav class="navbar navbar-dark bg-primary">
-  		<p class="right"><font size="5" color="white">${userInfo.name} さん</font></p>
+  		<p class="right"><font size="5" color="white"><c:out value="${userInfo.name}"/> さん</font></p>
   		<a href="Logout">
 	  		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 	  			ログアウト
@@ -37,23 +37,23 @@
 			<table class="table-css" style="WIDTH: 50%">
 				<tr>
 					<td class="td-css13"><b>ログインID</b></td>
-					<td class="td-css13"><p>${user.login_id}</p></td>
+					<td class="td-css13"><p><c:out value="${user.login_id}"/></p></td>
 				</tr>
 				<tr>
 					<td class="td-css13"><b>ユーザ名</b></td>
-					<td class="td-css13"><p>${user.name}</p></td>
+					<td class="td-css13"><p><c:out value="${user.name}"/></p></td>
 				</tr>
 				<tr>
 					<td class="td-css13"><b>生年月日</b></td>
-					<td class="td-css13"><p>${user.birth_date}</p></td>
+					<td class="td-css13"><p><c:out value="${user.birth_date}"/></p></td>
 				</tr>
 				<tr>
 					<td class="td-css13"><b>登録日時</b></td>
-					<td class="td-css13"><p>${user.create_date}</p></td>
+					<td class="td-css13"><p><c:out value="${user.create_date}"/></p></td>
 				</tr>
 				<tr>
 					<td class="td-css13"><b>更新日時</b></td>
-					<td class="td-css13"><p>${user.update_date}</p></td>
+					<td class="td-css13"><p><c:out value="${user.update_date}"/></p></td>
 				</tr>
 			</table>
 			<br>

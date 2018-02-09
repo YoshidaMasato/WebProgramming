@@ -32,17 +32,25 @@ public class UserUpdate extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		//セッションが空の場合、ログイン画面に変遷
 		HttpSession session = request.getSession();
 		if(session.getAttribute("userInfo") == null) {
 			response.sendRedirect("Login");
 			return;
 		}
+
+		//リクエストスコープにあるid情報を取得
 		String id = request.getParameter("id");
 
+		//id情報をDAOに渡してユーザを検索
 		UserDao userDao = new UserDao();
 		User user = userDao.findById(id);
+
+		//DBから入手したユーザデータをリクエストスコープに保管
 		request.setAttribute("user", user);
 
+		//jspにフォワード
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/userUpdate.jsp");
 		dispatcher.forward(request, response);
 	}
@@ -51,15 +59,24 @@ public class UserUpdate extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		//フォームに入力された内容を変数に代入
 		request.setCharacterEncoding("UTF-8");
 		String id = request.getParameter("updateId");
-		String password = request.getParameter("updatePassword");
-		String pCheck = request.getParameter("updatePasswordCheck");
+		String pass = request.getParameter("updatePassword");
+		String passCheck = request.getParameter("updatePasswordCheck");
 		String name = request.getParameter("updateName");
 		String birth_date = request.getParameter("updateBirthDate");
 		String login_id = request.getParameter("loginId");
+
+		//id情報をintにキャスト
 		int iId = Integer.parseInt(id);
 
+		//パスワードを暗号化
+		String password = Util.convertToMD5(pass);
+		String pCheck = Util.convertToMD5(passCheck);
+
+		//フォームに入力された内容を出力
 		System.out.println(id);
 		System.out.println(password);
 		System.out.println(pCheck);
